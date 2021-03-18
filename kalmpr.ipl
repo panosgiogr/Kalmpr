@@ -1,0 +1,97 @@
+#Print are bulky due to luck of format
+#First Part Of Assignment
+
+MINNUM = 2100000000
+MAXNUM = 2101000000
+MAXK = 4
+COMPUTATIONS = 20
+
+c_primes = 0
+c_cemiprimes = 0
+
+k = MINNUM
+while k <= MAXNUM
+	count = 0
+	n = k
+	factor = 0
+	n_m = n % 2
+	while n_m == 0
+		count = count + 1
+		n = n / 2
+		n_m = n % 2
+	i = 3
+	i_i = 0
+	while i_i <= n #loop until the square of i <= n.
+		n_m_i = n % i
+		while n_m_i == 0 #while the remainder of x / i is 0 , then do :
+			count = count + 1
+			n = n / i
+			factor = n
+			n_m_i = n % i
+		i_i = i * i
+		i = i + 2
+	if n > 2
+		count = count + 1
+	if count >= 2
+		if count <= MAXK
+			c_primes = c_primes + 1
+	if count == 2
+		c_semiprimes = c_semiprimes + 1
+	if count == 2   #if count is semiprime and interesting then do :
+		if factor > 1
+			k_factor = k / factor
+			k_factor = k_factor * factor
+			if k_factor == k
+				f1_temp = k / factor
+				f1 = f1_temp
+				f2 = factor
+				f1_f2 = f1 - f2
+				f1_f2 = f1_f2 * 100
+				if f1_f2 < 0                #Absolute Value
+					mins = 5 - 6        #mins = -1
+					f1_f2 = mins * f1_f2
+				f1_f2 = f1_f2 / f1
+				if f1_f2 < 1
+					writeln f1
+					writeln f2
+					f1_f2_2 = f1 * f2
+					writeln f1_f2_2
+	k = k + 1
+#Next we have to print the k-almost prime numbers count
+writeln c_primes
+#Now we print semiprimes count
+writeln c_semiprimes
+
+#Second Part Of Assignment
+l = 0
+while l < COMPUTATIONS
+	random y
+	random z
+	y_32768 = y % 32768
+	y_32768 = y_32768 + 1
+	z_32768 = z % 32768
+	z_32768 = z_32768 + 1
+	y_z_32768 = y_32768 * z_32768
+	w = y_z_32768 + 1
+	x = w
+	count = 0
+	x_m = x % 2
+	while x_m == 0
+		count = count + 1
+		x = x / 2
+		x_m = x % 2	
+	i = 3
+	i_i = 0
+	while i_i <= x #loop until the square of i <= n
+		x_m_i = x % i
+		while x_m_i == 0 #while the remainder of x / i is 0 , then do :
+			count = count + 1
+			x = x / i
+			x_m_i = x % i
+		i_i = i * i
+		i = i + 2
+	if x > 2
+		count = count + 1
+	writeln w     #number
+	writeln count #k-almost prime
+	l = l + 1
